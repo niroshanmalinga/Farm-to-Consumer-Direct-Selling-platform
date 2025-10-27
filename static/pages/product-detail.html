@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - FarmDirect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {theme: {extend: {colors: {primary: '#16a34a'}}}}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm p-4"><div class="container mx-auto"><a href="../index.html" class="font-bold text-xl text-primary">FarmDirect</a></div></header>
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid lg:grid-cols-2 gap-12">
+            <div><img id="mainImage" src="https://images.unsplash.com/photo-1546470427-227cec9c34c7?w=600" class="w-full rounded-2xl shadow-lg mb-4"><div class="grid grid-cols-4 gap-4"><img src="https://images.unsplash.com/photo-1546470427-227cec9c34c7?w=150" class="w-full h-24 object-cover rounded-lg cursor-pointer border-2 border-primary" onclick="document.getElementById('mainImage').src=this.src"></div></div>
+            <div><h1 id="productName" class="text-4xl font-bold mb-4">Organic Tomatoes</h1><div class="flex items-center mb-4"><div class="flex text-yellow-400 mr-2">★★★★★</div><span class="text-gray-600">(124 reviews)</span></div><div class="text-3xl font-bold text-primary mb-6">Rs. 350 <span class="text-lg text-gray-500">per kg</span></div><p class="text-gray-600 mb-6">Fresh, organic tomatoes grown without harmful pesticides. Rich in vitamins and perfect for salads, cooking, and sauces. Harvested daily to ensure maximum freshness.</p><div class="bg-gray-50 rounded-xl p-6 mb-6"><h3 class="font-bold mb-4">Product Details</h3><div class="space-y-2 text-sm"><div class="flex justify-between"><span class="text-gray-600">Category</span><span class="font-semibold">Vegetables</span></div><div class="flex justify-between"><span class="text-gray-600">Farmer</span><span class="font-semibold">Kamal Silva</span></div><div class="flex justify-between"><span class="text-gray-600">Location</span><span class="font-semibold">Anuradhapura</span></div><div class="flex justify-between"><span class="text-gray-600">Organic Certified</span><span class="font-semibold text-green-600">Yes</span></div></div></div><div class="flex items-center space-x-4 mb-6"><label class="font-semibold">Quantity:</label><div class="flex items-center border-2 border-gray-200 rounded-lg"><button onclick="updateQty(-1)" class="px-4 py-2 hover:bg-gray-100">-</button><input type="number" id="quantity" value="1" min="1" class="w-16 text-center border-x-2 border-gray-200 py-2"><button onclick="updateQty(1)" class="px-4 py-2 hover:bg-gray-100">+</button></div></div><button onclick="addToCartDetail()" class="w-full py-4 bg-gradient-to-r from-primary to-green-800 text-white rounded-lg font-bold text-lg hover:shadow-lg transition-all mb-4">Add to Cart</button><button class="w-full py-4 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary hover:text-white transition-colors">Buy Now</button></div>
+        </div>
+    </div>
+    <script src="../scripts/main.js"></script>
+    <script>
+        function updateQty(change) {
+            const input = document.getElementById('quantity');
+            const newVal = Math.max(1, parseInt(input.value) + change);
+            input.value = newVal;
+        }
+        function addToCartDetail() {
+            const qty = parseInt(document.getElementById('quantity').value);
+            const productId = new URLSearchParams(window.location.search).get('id') || 1;
+            const products = JSON.parse(localStorage.getItem('farmDirectProducts') || '[]');
+            const product = products.find(p => p.id == productId);
+            if (product) {
+                addToCart({...product, quantity: qty});
+                setTimeout(() => window.location.href = 'cart.html', 1000);
+            }
+        }
+    </script>
+</body>
+</html>

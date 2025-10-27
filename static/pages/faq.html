@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - FarmDirect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {theme: {extend: {colors: {primary: '#16a34a'}}}}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="font-sans bg-gray-50">
+    <header class="bg-white shadow-sm py-4"><div class="container mx-auto px-4"><a href="../index.html" class="flex items-center space-x-2"><div class="w-10 h-10 bg-gradient-to-br from-primary to-green-800 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div><span class="text-xl font-bold text-primary">FarmDirect</span></a></div></header>
+    <main class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h1>
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="bg-white rounded-xl p-6 cursor-pointer" onclick="this.querySelector('.answer').classList.toggle('hidden')">
+                <h3 class="font-bold text-lg flex items-center justify-between">How do I place an order? <span>+</span></h3>
+                <p class="answer hidden mt-4 text-gray-600">Browse products, add items to your cart, and proceed to checkout. You'll need to create an account first.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 cursor-pointer" onclick="this.querySelector('.answer').classList.toggle('hidden')">
+                <h3 class="font-bold text-lg flex items-center justify-between">What are the delivery charges? <span>+</span></h3>
+                <p class="answer hidden mt-4 text-gray-600">Delivery is Rs. 200 for orders under Rs. 2000. Free delivery for orders above Rs. 2000.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 cursor-pointer" onclick="this.querySelector('.answer').classList.toggle('hidden')">
+                <h3 class="font-bold text-lg flex items-center justify-between">How fresh are the products? <span>+</span></h3>
+                <p class="answer hidden mt-4 text-gray-600">All products are harvested within 24 hours of delivery, ensuring maximum freshness.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 cursor-pointer" onclick="this.querySelector('.answer').classList.toggle('hidden')">
+                <h3 class="font-bold text-lg flex items-center justify-between">Can I become a seller? <span>+</span></h3>
+                <p class="answer hidden mt-4 text-gray-600">Yes! Visit our Seller Onboarding page to register as a farmer and start selling your produce.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 cursor-pointer" onclick="this.querySelector('.answer').classList.toggle('hidden')">
+                <h3 class="font-bold text-lg flex items-center justify-between">What payment methods do you accept? <span>+</span></h3>
+                <p class="answer hidden mt-4 text-gray-600">We accept cash on delivery, credit/debit cards, and mobile payments.</p>
+            </div>
+        </div>
+    </main>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

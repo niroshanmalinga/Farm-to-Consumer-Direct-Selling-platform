@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - FarmDirect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {theme: {extend: {colors: {primary: '#16a34a'}}}}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm p-4"><div class="container mx-auto"><a href="../index.html" class="font-bold text-xl text-primary">FarmDirect</a></div></header>
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold mb-8">Checkout</h1>
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-white rounded-xl p-6"><h2 class="text-xl font-bold mb-4">Delivery Address</h2><form class="space-y-4"><div><label class="block font-medium mb-2">Full Name</label><input type="text" required class="w-full px-4 py-3 border rounded-lg"></div><div><label class="block font-medium mb-2">Phone Number</label><input type="tel" required class="w-full px-4 py-3 border rounded-lg"></div><div><label class="block font-medium mb-2">Address</label><textarea rows="3" required class="w-full px-4 py-3 border rounded-lg"></textarea></div><div class="grid grid-cols-2 gap-4"><div><label class="block font-medium mb-2">City</label><input type="text" required class="w-full px-4 py-3 border rounded-lg"></div><div><label class="block font-medium mb-2">Postal Code</label><input type="text" required class="w-full px-4 py-3 border rounded-lg"></div></div></form></div>
+                <div class="bg-white rounded-xl p-6"><h2 class="text-xl font-bold mb-4">Payment Method</h2><div class="space-y-3"><label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-primary"><input type="radio" name="payment" value="cod" checked class="mr-3"><div><div class="font-semibold">Cash on Delivery</div><div class="text-sm text-gray-600">Pay when you receive your order</div></div></label><label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-primary"><input type="radio" name="payment" value="card" class="mr-3"><div><div class="font-semibold">Card Payment</div><div class="text-sm text-gray-600">Credit or Debit Card</div></div></label></div></div>
+            </div>
+            <div><div class="bg-white rounded-xl p-6 sticky top-24"><h2 class="text-xl font-bold mb-4">Order Summary</h2><div class="space-y-3 mb-6"><div class="flex justify-between"><span>Subtotal</span><span class="font-semibold" id="checkoutSubtotal">Rs. 0</span></div><div class="flex justify-between"><span>Delivery</span><span class="font-semibold">Rs. 200</span></div><div class="border-t pt-3 flex justify-between text-lg font-bold"><span>Total</span><span class="text-primary" id="checkoutTotal">Rs. 0</span></div></div><button onclick="placeOrder()" class="w-full py-3 bg-gradient-to-r from-primary to-green-800 text-white rounded-lg font-bold hover:shadow-lg transition-all">Place Order</button></div></div>
+        </div>
+    </div>
+    <script src="../scripts/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+            const subtotal = getCartTotal();
+            document.getElementById('checkoutSubtotal').textContent = formatCurrency(subtotal);
+            document.getElementById('checkoutTotal').textContent = formatCurrency(subtotal + 200);
+        });
+        function placeOrder() {
+            const cart = getCart();
+            const orderData = {
+                items: cart,
+                total: getCartTotal() + 200,
+                deliveryAddress: 'Sample Address',
+                paymentMethod: document.querySelector('input[name="payment"]:checked').value
+            };
+            const order = createOrder(orderData);
+            if (order) {
+                setTimeout(() => window.location.href = 'orders.html', 1500);
+            }
+        }
+    </script>
+</body>
+</html>

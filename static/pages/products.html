@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Fresh Products - FarmDirect</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#16a34a',
+                        secondary: '#15803d',
+                        accent: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="font-sans bg-gray-50">
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">FarmDirect</span>
+                </a>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+                    <a href="products.html" class="text-primary font-semibold">Products</a>
+                    <a href="farmers.html" class="text-gray-700 hover:text-primary transition-colors">Our Farmers</a>
+                    <a href="about.html" class="text-gray-700 hover:text-primary transition-colors">About</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2" onclick="window.location.href='cart.html'">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        <span class="cart-count absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">Fresh Organic Products</h1>
+                <p class="text-gray-600">Browse our selection of farm-fresh produce</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <aside class="lg:w-64 flex-shrink-0">
+                    <div class="bg-white rounded-xl p-6 sticky top-24">
+                        <h2 class="font-bold text-lg mb-4">Filters</h2>
+
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3">Category</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="category-filter w-4 h-4 text-primary rounded" value="all" checked>
+                                    <span class="ml-2 text-sm">All Products</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="category-filter w-4 h-4 text-primary rounded" value="vegetables">
+                                    <span class="ml-2 text-sm">Vegetables</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="category-filter w-4 h-4 text-primary rounded" value="fruits">
+                                    <span class="ml-2 text-sm">Fruits</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="category-filter w-4 h-4 text-primary rounded" value="dairy">
+                                    <span class="ml-2 text-sm">Dairy</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="category-filter w-4 h-4 text-primary rounded" value="grains">
+                                    <span class="ml-2 text-sm">Grains</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3">Price Range</h3>
+                            <input type="range" id="priceRange" min="0" max="1000" value="1000" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600 mt-2">
+                                <span>Rs. 0</span>
+                                <span id="maxPrice">Rs. 1000</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3">Rating</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="rating" class="w-4 h-4" value="all" checked>
+                                    <span class="ml-2 text-sm">All Ratings</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="rating" class="w-4 h-4" value="4">
+                                    <span class="ml-2 text-sm">4+ Stars</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button onclick="resetFilters()" class="w-full py-2 text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                            Reset Filters
+                        </button>
+                    </div>
+                </aside>
+
+                <div class="flex-1">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="text-gray-600">
+                            Showing <span id="productCount">0</span> products
+                        </div>
+                        <select id="sortSelect" class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-primary">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+
+                    <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    </div>
+
+                    <div id="noProducts" class="hidden text-center py-12">
+                        <div class="text-gray-400 mb-4">
+                            <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">No products found</h3>
+                        <p class="text-gray-500">Try adjusting your filters</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="text-center text-sm">
+                <p>&copy; 2024 FarmDirect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/products.js"></script>
+</body>
+</html>
